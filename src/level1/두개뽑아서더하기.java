@@ -16,7 +16,6 @@ public class 두개뽑아서더하기 {
 		
 		for(int i=0; i<numbers.length-1; i++) {
 			for(int j=i+1; j<numbers.length; j++) {
-				//arrayList.add(numbers[i]+numbers[j]);
 				set.add(numbers[i]+numbers[j]);
 			}
 		}
@@ -29,16 +28,7 @@ public class 두개뽑아서더하기 {
 			if(arrayList.get(i) == arrayList.get(i+1))
 				arrayList.remove(i+1);
 		}
-		
-//		HashSet<Integer> hashset = new HashSet<Integer>();
-//
-//		for(int i=0; i<numbers.length-1; i++) {
-//			for(int j=i+1; j<numbers.length; j++) {
-//				hashset.add(numbers[i] + numbers[j]);
-//			}
-//		}
-//		
-//		answer =  hashset.stream().mapToInt(i->i).toArray();
+
 		answer = new int[arrayList.size()];
 		for(int i=0; i<arrayList.size(); i++) {
 			answer[i] = arrayList.get(i);
@@ -46,5 +36,15 @@ public class 두개뽑아서더하기 {
 		
 		System.out.println("arrayList : " + arrayList.get(0));
 		System.out.println("answer : " + answer);
+		
+//		HashSet<Integer> hashset = new HashSet<Integer>();
+//    
+//	    for(int i=0; i<numbers.length-1; i++) {
+//			for(int j=i+1; j<numbers.length; j++) {
+//				hashset.add(numbers[i] + numbers[j]);
+//			}
+//		}
+//    
+//	    answer =  hashset.stream().mapToInt(i->i).toArray();
 	}
 }
