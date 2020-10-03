@@ -10,6 +10,11 @@ public class H_Index {
 		int n = citations.length;
 		Arrays.sort(citations);
 		
+		for(int c : citations)
+			System.out.print(c + " ");
+		
+		System.out.println();
+		
 		for(int i=0; i<n; i++) {
 			if(n-i+1 > citations[i]) {
 				answer = citations[i];
