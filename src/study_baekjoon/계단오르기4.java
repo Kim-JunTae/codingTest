@@ -6,14 +6,17 @@ public class 계단오르기4 {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		
+		//계단의 갯수를 입력
 		int N = in.nextInt();
-		int[] total = new int[N+1];
+		//각 계단의 점수를 담을 배열
 		int[] stairs = new int[N+1];
-		
+		//각 계단의 점수를 입력
 		for(int i=1; i<=N; i++) {
 			stairs[i] = in.nextInt();
 		}
+		
+		//계단에 숫자에 따른 최댓값을 넣을 배열 : Memoization
+		int[] total = new int[N+1];
 		
 		//index=0은 시작점
 		total[1] = stairs[1];

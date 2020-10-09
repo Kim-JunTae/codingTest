@@ -9,16 +9,18 @@ public class 계단오르기3 {
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		
+		//계단의 갯수 입력
 		int N = in.nextInt();
-		//totalScore, dp
-		total = new Integer[N+1];
-		
+		//각 계단의 점수를 담을 배열
 		stairs = new int[N+1];
-		
+		//각 계단의 점수 입력
 		for(int i=1; i<=N; i++) {
 			stairs[i] = in.nextInt();
 		}
+		
+		//계단의 갯수에 따른 최댓값을 담을 배열, 동적계획법(Dynamic Programming)
+		total = new Integer[N+1];
+		
 		
 		total[0] = stairs[0];	//디폴트 값이 null이므로 0으로 초기화
 		total[1] = stairs[1];
