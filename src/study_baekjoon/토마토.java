@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class 토마토 {
 	
 	public static void main(String[] args) {
+		
 		Scanner in = new Scanner(System.in);
 		int N = in.nextInt();
 		int M = in.nextInt();
@@ -20,6 +21,8 @@ public class 토마토 {
 				todayTomato[i][j] = in.nextInt();
 			}
 		}
+		//시간 측정 : 시작
+		long start = System.currentTimeMillis();
 		
 //		int day = -1;
 //		//예제 1~5에서는 다 가능
@@ -126,5 +129,9 @@ public class 토마토 {
 			else
 				System.out.println("답 : "+day);
 		}
+		
+		//시간 측정 : 끝
+		long end = System.currentTimeMillis();
+		System.out.println("실행시간 : " + (end-start)/1000.0);
 	}
 }
