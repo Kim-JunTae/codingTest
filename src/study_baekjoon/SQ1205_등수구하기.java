@@ -8,7 +8,9 @@ public class SQ1205_등수구하기 {
 	public static void main(String[] args) {
 		//시간 측정 : 시작
 		long start = System.currentTimeMillis();
-
+		
+		int answer = -1;
+		
 		//입력
 		//N : 리스트에 있는 점수의 갯수
 		//newScore : 새로운 점수
@@ -31,54 +33,66 @@ public class SQ1205_등수구하기 {
 		
 		//랭크 리스트 목록 구성
 		//채워지지 않은 나머지 랭크 리스트는 0으로 초기화
-		for(int i=0; i<N; i++) {
-			rankList[i] = scoreList[i];
+		if(N == P){	//랭크리스트 사이즈와 주어진 점수 리스트 갯수가 같을 때
+			for(int i=0; i<N; i++) {
+				rankList[i] = scoreList[i];
+			}
+			//1. 오름차순 정렬
+			Arrays.sort(rankList);
+			//-> ex) 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+			
+			//새로운 점수 입력
+			for(int i=0; i<N-1; i++) {
+				if(rankList[i] < newScore && rankList[i+1] > newScore){
+					//2. 반전 -> 내림차순 정렬
+					reverse(rankList);
+					//-> ex) 100, 90, 80, 0, 0, 0, 0, 0, 0, 0
+					
+					//검색 및 출력
+					for(int j=0; j<P; j++) {
+						if(rankList[j] == newScore) {
+							answer = j;
+							break;
+						}
+					}
+					break;
+				}
+			}
+			
+		}else{//랭크리스트 사이즈보다 주어진 점수 리스트 갯수가 작을 때 
+			for(int i=0; i<N; i++) {
+				rankList[i] = scoreList[i];
+			}
+			//빈 공간에 새로운 점수 입력
+			rankList[N] = newScore;
+			
+			//오름차순 정렬
+			Arrays.sort(rankList);
+			//-> ex) newScore가 들어간 오름차순 정렬
+			
+			//2. 반전 -> 내림차순 정렬
+			reverse(rankList);
+			//-> ex) 100, 90, 80, 0, 0, 0, 0, 0, 0, 0
+			
+			//검색 및 출력
+			for(int i=0; i<P; i++) {
+				if(rankList[i] == newScore) {
+					answer = i;
+					break;
+				}
+			}
 		}
-		
-		//내림차순 정렬
-		//1. 오름차순 정렬
-		Arrays.sort(rankList);
-		//2. 반전
-		reverse(rankList);
-		//-> ex) 100, 90, 80, 0, 0, 0, 0, 0, 0, 0
 		
 //		for(int i=0; i<P; i++)
 //			System.out.print(rankList[i] + " ");
 		
-		//새로운 점수 rankList에 넣기
-		//checkRank(rankList, newScore);
-		
-		//검색 후 정답 출력
-		int answer = findRank(rankList, newScore);
-				
 		System.out.println("정답 : " + answer);
 		
 		//시간 측정 : 끝
 		long end = System.currentTimeMillis();
 		System.out.println("실행시간 : " + (end-start)/1000.0);
 	}
-	
-	//등수 찾는 메서드
-	public static int findRank(int[] rankList, int newScore) {
-		for(int i=0; i<rankList.length; i++) {
-			if(rankList[i] < newScore)
-				return i;
-		}
-		return -1;
-	}
-	
-//	//새로운 점수 rankList에 넣기
-//	public static void checkRank(int[] rankList, int newScore) {
-//		
-//		int temp = 0;
-//		for(int i=0; i<rankList.length; i++) {
-//			temp = rankList[i];
-//			if(rankList[i] < newScore) {
-//				rankList[i] = newScore;
-//			}
-//		}
-//	}
-	
+
 	public static void reverse(int[] a) {
 		for(int i=0; i<a.length/2; i++) {
 			swap(a, i, a.length-i-1);
