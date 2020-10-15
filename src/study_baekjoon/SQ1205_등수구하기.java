@@ -4,7 +4,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SQ1205_등수구하기 {
-
+	// 예제1,2 통과 -> 예제 입력 3을 찾자
+	// 5 5 5
+	// 5 5 4 3 2
+	// 답  : 1 but 오답으로 -1
+	// 수정 전: if(rankList[i] < newScore && rankList[i+1] > newScore){
+	// 수정 후: if(rankList[i] < newScore && rankList[i+1] >= newScore){ rankList[i] = newScore;
 	public static void main(String[] args) {
 		//시간 측정 : 시작
 		long start = System.currentTimeMillis();
@@ -43,15 +48,19 @@ public class SQ1205_등수구하기 {
 			
 			//새로운 점수 입력
 			for(int i=0; i<N-1; i++) {
-				if(rankList[i] < newScore && rankList[i+1] > newScore){
-					//2. 반전 -> 내림차순 정렬
+				if(rankList[i] < newScore && rankList[i+1] >= newScore){
+					//2. 새로운 점수 등록
+					rankList[i] = newScore;
+					//원래는 밀어내기로 구현해야 더 설명에 가깝다.. 그러나 답을 구하는데에는 무리가 없을 것 같다.
+					
+					//3. 반전 -> 내림차순 정렬
 					reverse(rankList);
 					//-> ex) 100, 90, 80, 0, 0, 0, 0, 0, 0, 0
 					
 					//검색 및 출력
 					for(int j=0; j<P; j++) {
 						if(rankList[j] == newScore) {
-							answer = j;
+							answer = j+1;
 							break;
 						}
 					}
@@ -77,14 +86,14 @@ public class SQ1205_등수구하기 {
 			//검색 및 출력
 			for(int i=0; i<P; i++) {
 				if(rankList[i] == newScore) {
-					answer = i;
+					answer = i+1;
 					break;
 				}
 			}
 		}
 		
-//		for(int i=0; i<P; i++)
-//			System.out.print(rankList[i] + " ");
+		for(int i=0; i<P; i++)
+			System.out.print(rankList[i] + " ");
 		
 		System.out.println("정답 : " + answer);
 		
