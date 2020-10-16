@@ -15,10 +15,6 @@ public class SQ2468_안전영역2 {
 //						      {7,2,5,3,6},
 //						      {8,9,5,2,7}};
 	
-	// ?
-	static int min = Integer.MAX_VALUE;
-	static int max = Integer.MIN_VALUE;
-	
 	static int answer = 0;
 	static PriorityQueue<Integer> queue;	//우선순위 큐. 가장 높은 데이터가 먼저 나오는 큐
 	
