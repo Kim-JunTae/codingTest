@@ -12,20 +12,14 @@ public class while문_단계 {
 	//Q1110번 더하기 사이클
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		String original = in.next();
-		String N = "";
+		int original = in.nextInt();
+		int number = original;
 		int cycle = 0;
-		if(original.length() == 1)
-			N = original+"0";
-		else
-			N = original;
+		
 		do {
-			int one = Integer.parseInt(N.substring(0, 1));
-			int two = Integer.parseInt(N.substring(1,2));
-			String newInt = String.valueOf(one+two);
-			N = N.substring(1, 2) + newInt;
+			number = number%10*10 + (number/10 + number%10)%10;
 			cycle++;
-		}while(original.compareTo(N) == 0);
+		}while(number != original);
 		
 		System.out.println(cycle);
 	}
