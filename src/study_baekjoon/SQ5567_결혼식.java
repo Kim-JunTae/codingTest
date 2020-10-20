@@ -47,7 +47,7 @@ public class SQ5567_°áÈ¥½Ä {
 					}
 				}
 			}
-		}
+		} 
 		
 		for(int i=0; i<inviteList.length; i++) {
 			if(inviteList[i]) {
