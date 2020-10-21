@@ -11,15 +11,15 @@ public class 일차원배열_단계 {
 		int B = in.nextInt();
 		int C = in.nextInt();
 		
-		int[] answer = new int[9];
+		int[] answer = new int[10];
 		
 		String ABC = Integer.toString(A*B*C);
 		//System.out.println(ABC);
 		
-		for(int i=1; i<10; i++) {
+		for(int i=0; i<10; i++) {
 			for(int j=0; j<ABC.length(); j++) {
 				if(i == Integer.parseInt(ABC.substring(j, j+1)) )
-					answer[i-1]++;
+					answer[i]++;
 			}
 		}
 		
