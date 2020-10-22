@@ -22,6 +22,7 @@ public class SQ2941_크로아티아알파벳 {
 					answer -= 1;
 				}
 			}
+			
 			if(i>0)
 				if(text.substring(i, i+2).equals("z=") && text.substring(i-1, i).equals("d")){
 					answer -= 1;
