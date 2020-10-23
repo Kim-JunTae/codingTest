@@ -4,18 +4,21 @@ import java.util.Scanner;
 
 public class SQ5567_결혼식 {
 	
+	private static int friends;
+	
+	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
 		//동기 수
-		int friends = in.nextInt();
+		friends = in.nextInt();
 		
 		//리스트의 길이 m
 		int relation = in.nextInt();
 		
 		//결혼식 참석 여부 :  0은 공백, 1은 상근, 나머지 친구들
-		boolean[] inviteList = new boolean[friends+1];
-		boolean[][] friendList = new boolean[friends+1][friends+1];
+		boolean[] inviteList = new boolean[friends];
+		boolean[][] friendList = new boolean[friends][friends];
 		
 		//친구관계를 저장할 2차원 int배열
 		//int[][] friendsList = new int[relation][2];
@@ -25,8 +28,8 @@ public class SQ5567_결혼식 {
 			int friend1 = in.nextInt();
 			int friend2 = in.nextInt();
 			
-			friendList[friend1][friend2] = true;
-			friendList[friend2][friend1] = true;			
+			friendList[friend1-1][friend2-1] = true;
+			friendList[friend2-1][friend1-1] = true;			
 		}
 		
 		System.out.println(solution(friendList, inviteList));
@@ -38,7 +41,7 @@ public class SQ5567_결혼식 {
 		
 		for(int i=1; i<friendList.length; i++) {
 			//상근이의 친구가
-			if(friendList[1][i]) {
+			if(friendList[0][i]) {
 				//아직 초대받지 못했다면 초대
 				if(!inviteList[i]) {
 					inviteList[i] = true;
