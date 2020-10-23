@@ -1,7 +1,5 @@
 package study_baekjoon;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class SQ5567_결혼식 {
@@ -9,47 +7,54 @@ public class SQ5567_결혼식 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		//하객수
-		int guestCount = 0;
-		
 		//동기 수
 		int friends = in.nextInt();
 		
 		//리스트의 길이 m
 		int relation = in.nextInt();
 		
-		//boolean 1byte
-		List<Integer> sanglist = new ArrayList<Integer>();
-		List<Integer> ffList = new ArrayList<Integer>();
+		//결혼식 참석 여부 :  0은 공백, 1은 상근, 나머지 친구들
+		boolean[] inviteList = new boolean[friends+1];
+		boolean[][] friendList = new boolean[friends+1][friends+1];
 		
 		//친구관계를 저장할 2차원 int배열
-		int[][] friendsList = new int[relation][2];
+		//int[][] friendsList = new int[relation][2];
+		
 		//친구관계 입력
 		for(int i=0; i<relation; i++) {
-			friendsList[i][0] = in.nextInt();
-			friendsList[i][1] = in.nextInt();
+			int friend1 = in.nextInt();
+			int friend2 = in.nextInt();
+			
+			friendList[friend1][friend2] = true;
+			friendList[friend2][friend1] = true;			
 		}
 		
-		//상근이 친구 추가
-		for(int i=0; i<friendsList.length; i++) {
-			if(friendsList[i][0] == 1) {
-				sanglist.add(friendsList[i][1]);
-				guestCount++;
-			}
-		}
+		System.out.println(solution(friendList, inviteList));
+	}
+	
+	private static int solution(boolean[][] friendList, boolean[] inviteList) {
+		//하객수
+		int guestCount = 0;
 		
-		//상근이 친구의 친구 추가
-		for(int i=0; i<sanglist.size(); i++) {
-			int friend = sanglist.get(i);
-			for(int j=0; j<friendsList.length; j++) {
-				if(friend == friendsList[j][0] && !sanglist.contains(friendsList[j][1]) && !ffList.contains(friendsList[j][1])){
-					ffList.add(friendsList[j][1]);
+		for(int i=1; i<friendList.length; i++) {
+			//상근이의 친구가
+			if(friendList[1][i]) {
+				//아직 초대받지 못했다면 초대
+				if(!inviteList[i]) {
+					inviteList[i] = true;
 					guestCount++;
+				}
+				for(int j=1; j<friendList.length; j++) {
+					//상근이의 친구의 친구가 아직 초대받지 못했다면
+					if(friendList[i][j] && !inviteList[j]) {
+						inviteList[j] = true;
+						guestCount++;
+					}
 				}
 			}
 		}
 		
-		System.out.println(guestCount);
+		return guestCount;
 	}
 	//친구의친구의친구까지 된다.
 //	public static void main(String[] args) {
