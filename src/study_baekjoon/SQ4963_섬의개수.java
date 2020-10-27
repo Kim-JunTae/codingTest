@@ -65,7 +65,7 @@ public class SQ4963_¼¶ÀÇ°³¼ö {
 		visited[y][x] = true;
 		
 		for(int i=0; i<4; i++) {
-			int dx = 
+			//int dx = 
 		}
 		
 	}
