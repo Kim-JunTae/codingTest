@@ -70,14 +70,13 @@ public class SQ4963_¼¶ÀÇ°³¼ö2 {
 			
 			for(int i=0; i<h; i++) {
 				for(int j=0; j<w; j++) {
-					if(arr[i][j] == 1 && check[i][j] == 0) {
+		 			if(arr[i][j] == 1 && check[i][j] == 0) {
 						//dfs(i,j,++count,w,h);
 						bfs(i,j,++count,w,h);
 					}
 				}
 			}
 		}
-
 	}
 
 }
