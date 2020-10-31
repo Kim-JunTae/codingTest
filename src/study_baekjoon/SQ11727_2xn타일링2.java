@@ -9,24 +9,20 @@ public class SQ11727_2xn≈∏¿œ∏µ2 {
 		
 		int N = in.nextInt();
 		
-		if(N==1) {
-			System.out.println(1);
-		}
-		
-		if(N==2) {
-			System.out.println(2);
-		}
-		
 		int[] memo = new int[N+1];
 		memo[1] = 1;
 		memo[2] = 3;
 		
 		for(int i=3; i<=N; i++) {
-			int tile1 = memo[i-1];
-			int tile2 = memo[i-2];
-			int tile3 = memo[i-2];
-			
-			memo[i] = tile1 + tile2 + tile3;
+//			int tile1 = memo[i-1];
+//			int tile2 = memo[i-2];
+//			int tile3 = memo[i-2];	
+//			memo[i] = tile1 + tile2 + tile3;
+			if(i/2 != 0) {
+				memo[i] = memo[i-1]*2 -1;
+			}else{//¬¶ºˆ
+				memo[i] = memo[i-2]*3;
+			}
 		}
 		
 		System.out.println(memo[N]%10007);

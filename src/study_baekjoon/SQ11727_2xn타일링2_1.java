@@ -15,7 +15,7 @@ public class SQ11727_2xn≈∏¿œ∏µ2_1 {
 		}
 		
 		if(N==2) {
-			System.out.println(2);
+			System.out.println(3);
 		}
 		
 		int[] memo = new int[N+1];
