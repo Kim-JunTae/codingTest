@@ -5,44 +5,53 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.HashSet;
 import java.util.Scanner;
-
+//실패목록 : 2675번,
 public class 문자열_단계 {
-
+	//1157번 단어 공부 : 실패, 메모리초과 및 정답 X
 	public static void main(String[] args) {
-		String encrypted_text = "qyyigoptvfb";
-		String key = "abcdefghijk";
-		String answer = "";
-		int character = 'a';
+		Scanner in = new Scanner(System.in);
+		String word = in.nextLine();
 		
-		String[] list = new String[26];
+		HashSet<String> set = new HashSet<String>();
+		for(int i=0; i<word.length(); i++) {
+			set.add(word.substring(i, i+1));
+		}
 		
-        for(int i=0; i<26; i++){
-        	char index = (char) (97+i);
-            list[i] = Character.toString(index);
-        }
+		String[] list = new String[set.size()];
+		int count = 0;
+		for(String w : set) {
+			list[count] = w;
+			count++;
+		}
 		
-        for(int i=0; i<26; i++) {
-        	System.out.print(list[i]);
-        }
-        System.out.println();
-        
-        for(int i=0; i<encrypted_text.length(); i++){
-            int c = encrypted_text.charAt(i);
-            int keyIndex = key.charAt(i) - 96;
-            
-            if(c+keyIndex > 122){
-                answer += list[c+keyIndex-122];
-            }else{
-                answer += list[c+keyIndex-97];
-            }
-             
-        }
-        
-		System.out.println(answer);
+		int[] answer = new int[set.size()];
+		for(int i=0; i<list.length; i++) {
+			for(int j=0; j<word.length(); j++){
+				if(list[i].equals(word.substring(j, j+1))) {
+					answer[i]++;
+				}
+			}
+		}
+		
+		int max = -1;
+		for(int i=0; i<answer.length; i++) {
+			if(max < answer[i]) {
+				max = i;
+			}else if(max == answer[i]) {
+				max = -1;
+				break;
+			}
+		}
+		
+		if(max >= 0)
+			System.out.println(list[max]);
+		else
+			System.out.println("?");
 	}
 	
-	//2675번 문자열 반복
+	//2675번 문자열 반복 : 실패 다시해보기
 //	public static void main(String[] args) throws IOException{
 //		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
