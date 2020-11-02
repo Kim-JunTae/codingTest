@@ -7,49 +7,77 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.HashSet;
 import java.util.Scanner;
-//실패목록 : 2675번,
+//실패목록 : 2675번, 1157번
 public class 문자열_단계 {
-	//1157번 단어 공부 : 실패, 메모리초과 및 정답 X
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		String word = in.nextLine();
+	
+	//2908번 상수
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		HashSet<String> set = new HashSet<String>();
-		for(int i=0; i<word.length(); i++) {
-			set.add(word.substring(i, i+1));
-		}
+		String text = br.readLine();
+		String[] word = text.split(" ");
 		
-		String[] list = new String[set.size()];
-		int count = 0;
-		for(String w : set) {
-			list[count] = w;
-			count++;
-		}
+		String one = word[0];
+		String two = word[1];
+		br.close();
+		bw.close();
+		int first = 100*Integer.parseInt(word[0].substring(2, 3))
+				   +10*Integer.parseInt(word[0].substring(1, 2))
+				   +Integer.parseInt(word[0].substring(0, 1));
 		
-		int[] answer = new int[set.size()];
-		for(int i=0; i<list.length; i++) {
-			for(int j=0; j<word.length(); j++){
-				if(list[i].equals(word.substring(j, j+1))) {
-					answer[i]++;
-				}
-			}
-		}
-		
-		int max = -1;
-		for(int i=0; i<answer.length; i++) {
-			if(max < answer[i]) {
-				max = i;
-			}else if(max == answer[i]) {
-				max = -1;
-				break;
-			}
-		}
-		
-		if(max >= 0)
-			System.out.println(list[max]);
+		int second = 100*Integer.parseInt(word[1].substring(2, 3))
+				   +10*Integer.parseInt(word[1].substring(1, 2))
+				   +Integer.parseInt(word[1].substring(0, 1));
+	
+		if(first > second)
+			System.out.println(first);
 		else
-			System.out.println("?");
+			System.out.println(second);
 	}
+	
+	
+	//1157번 단어 공부 : 실패, 메모리초과 및 정답 X
+//	public static void main(String[] args) {
+//		Scanner in = new Scanner(System.in);
+//		String word = in.nextLine();
+//		
+//		HashSet<String> set = new HashSet<String>();
+//		for(int i=0; i<word.length(); i++) {
+//			set.add(word.substring(i, i+1));
+//		}
+//		
+//		String[] list = new String[set.size()];
+//		int count = 0;
+//		for(String w : set) {
+//			list[count] = w;
+//			count++;
+//		}
+//		
+//		int[] answer = new int[set.size()];
+//		for(int i=0; i<list.length; i++) {
+//			for(int j=0; j<word.length(); j++){
+//				if(list[i].equals(word.substring(j, j+1))) {
+//					answer[i]++;
+//				}
+//			}
+//		}
+//		
+//		int max = -1;
+//		for(int i=0; i<answer.length; i++) {
+//			if(max < answer[i]) {
+//				max = i;
+//			}else if(max == answer[i]) {
+//				max = -1;
+//				break;
+//			}
+//		}
+//		
+//		if(max >= 0)
+//			System.out.println(list[max]);
+//		else
+//			System.out.println("?");
+//	}
 	
 	//2675번 문자열 반복 : 실패 다시해보기
 //	public static void main(String[] args) throws IOException{
