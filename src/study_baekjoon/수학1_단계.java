@@ -22,8 +22,8 @@ public class 수학1_단계 {
 		}else if(N % 5 == 2 || N % 5 == 4) {
 			System.out.println((N/5)+2);
 		}
-	}	
 	
+	}	
 	//손익 분기점
 //	public static void main(String[] args) throws IOException{
 //		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
